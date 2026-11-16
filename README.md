@@ -5,6 +5,14 @@ Ricardo Yepez (A20575381)
 
 Python version: 3.14.10 (latest as of 11/13)
 
+GOAL Instructions:
+1.) LW
+2.) SW
+3.) ADD
+4.) BNE
+5.) SUBI
+6.) ORI
+
 Notes:
 We represent physical 32-bit wires with the normal integer;
     any operation on said integers can use bitwise functions, for loops, etc
