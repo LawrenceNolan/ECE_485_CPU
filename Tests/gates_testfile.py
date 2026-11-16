@@ -147,6 +147,15 @@ def gates_tb():
     assert OR5(1, 1, 1, 1, 1) == 1, "OR5(1, 1, 1, 1, 1) failed"
     print("OR5 gate passed")
 
+    # NOR32
+    assert NOR32(0x00000000) == 1, "NOR32(0) failed"
+    assert NOR32(0x00000001) == 0, "NOR32 LSB=1 failed"
+    assert NOR32(0x00008000) == 0, "NOR32 middle bit=1 failed"
+    assert NOR32(0x80000000) == 0, "NOR32 MSB=1 failed"
+    for i in range(32): assert NOR32(1 << i) == 0, f"NOR32 failed when bit {i} is 1"
+    assert NOR32(0xFFFFFFFF) == 0, "NOR32(0xFFFFFFFF) failed"
+    print("NOR32 gate passed")
+
     print("\nAll Tests Passed")
 
 

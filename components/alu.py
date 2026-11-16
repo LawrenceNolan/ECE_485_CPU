@@ -1,0 +1,1 @@
+# here you go ricky, make a 1-bit ALU and then make it 32-bit
