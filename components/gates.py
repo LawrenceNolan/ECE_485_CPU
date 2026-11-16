@@ -27,5 +27,11 @@ def AND3(a,b,c):
 def AND4(a,b,c,d):
     return AND(AND(a,b), AND(c,d))
 
+def OR3(a,b,c):
+    return OR(OR(a,b), c)
+
+def OR4(a,b,c,d):
+    return OR(OR(a,b), OR(c,d))
+
 def OR5(a,b,c,d,e):
     return OR(OR(OR(a,b), OR(c,d)), e)
