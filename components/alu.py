@@ -2,7 +2,7 @@
 
 from components.gates import *
 from components.adders import full_adder
-from components.muxes import mux2, mux3
+from components.muxes import mux2
 
 def alu_1bit(a: int, b: int, cin: int, op: int) -> tuple[int, int]:
     opm = (op >> 1) & 1

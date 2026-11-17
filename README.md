@@ -3,8 +3,6 @@ Authors:
 Nolan Lawrence (A20574109)
 Ricardo Yepez (A20575381)
 
-Python version: 3.14.10 (latest as of 11/13)
-
 GOAL Instructions:
 1.) LW
 2.) SW
@@ -22,4 +20,4 @@ Logic gates will be used iff the physical hardware would be present
     (for loops, bit shifting, storing results, etc) will not use logic gates
 
 Bus is defined as an typical Integer
-Registers are defined as an Array
+Registers are defined as typical Integers
