@@ -4,13 +4,13 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 # Start of testbench
-from components.registerFile import registerFile
+from components.registerFile import RegisterFile
 
 
 def registers_tb():
     print("Running Register File Testbench...\n")
 
-    rf = registerFile()
+    rf = RegisterFile()
 
     # Init
     assert rf.read(0, 1) == (0, 0), "Initial registers not 0"
