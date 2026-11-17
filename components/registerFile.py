@@ -1,4 +1,4 @@
-class registerFile:
+class RegisterFile:
     def __init__(self):
         self.registers = [0] * 32 # $zero register
 

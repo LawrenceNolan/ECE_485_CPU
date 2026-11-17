@@ -75,6 +75,16 @@ def mux2_32(a32: int, b32: int, sel: int) -> int:
         result |= (bit << i)
     return result
 
+def mux3_32(a32: int, b32: int, c32: int, sel: int) -> int:
+    result = 0
+    for i in range(32):
+        a = (a32 >> i) & 1
+        b = (b32 >> i) & 1
+        c = (c32 >> i) & 1
+        bit = mux3(a, b, c, sel)
+        result |= (bit << i)
+    return result
+
 def mux4_32(a32: int, b32: int, c32: int, d32: int, sel: int) -> int:
     result = 0
     for i in range(32):
