@@ -6,6 +6,7 @@ from components.alu import alu_32bit
 from components.memory import *
 from components.registerFile import *
 from components.ses import *
+from components.StateRegister import *
 
 class MultiCycleDatapath:
     def __init__(self):
@@ -52,7 +53,7 @@ class MultiCycleDatapath:
 
         # 3. Execute
         alu_A = mux2_32(A, PC, ALUSrcA)
-        alu_B = mux4_32(B, 4, extended_imm, shifted_imm)
+        alu_B = mux4_32(B, 4, extended_imm, shifted_imm, ALUSrcB)
 
         alu_result, zero_flag = alu_32bit(alu_A, alu_B, NOT(alu_B), ALUControl)
         jump_pc = (PC & 0xF0000000) | shifted_jump_addr
