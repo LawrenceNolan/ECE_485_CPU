@@ -14,6 +14,7 @@ def full_adder(a,b, Cin):
     return S, Cout
 
 # This implementation uses a Ripple Carry Adder (RCA)
+# Not needed
 def adder_32(a32, b32, Cin=0):
     result = 0
 

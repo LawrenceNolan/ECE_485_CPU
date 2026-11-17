@@ -45,4 +45,3 @@ def NOR32(bus):
         result = OR(result, c1)
 
     return NOT(result)
-

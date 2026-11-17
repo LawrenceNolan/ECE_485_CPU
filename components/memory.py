@@ -2,11 +2,17 @@ class Memory:
     def __init__(self):
         self.memory = {}
 
-    def read(self, address, memRead):
+
+    # Load Dictionary of instructions into memory
+    def load_program(self, program):
+        self.memory.update(program)
+
+
+    def access(self, address, memRead, memWrite, data):
         if memRead:
             return self.memory.get(address,0)
-        return 0
 
-    def write(self, address, data, memWrite):
         if memWrite:
             self.memory[address] = data & 0xFFFFFFFF
+
+        return 0
