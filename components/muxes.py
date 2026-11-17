@@ -65,3 +65,23 @@ def mux5(i0,i1,i2,i3,i4,sel):
     d4 = AND4(i4, s2, not_s1, not_s0)
 
     return OR5(d0,d1,d2,d3,d4)
+
+def mux2_32(a32: int, b32: int, sel: int) -> int:
+    result = 0
+    for i in range(32):
+        a = (a32 >> i) & 1
+        b = (b32 >> i) & 1
+        bit = mux2(a, b, sel)
+        result |= (bit << i)
+    return result
+
+def mux4_32(a32: int, b32: int, c32: int, d32: int, sel: int) -> int:
+    result = 0
+    for i in range(32):
+        a = (a32 >> i) & 1
+        b = (b32 >> i) & 1
+        c = (c32 >> i) & 1
+        d = (d32 >> i) & 1
+        bit = mux4(a, b, c, d, sel)
+        result |= (bit << i)
+    return result
