@@ -55,7 +55,7 @@ class MultiCycleDatapath:
         alu_A = mux2_32(A, PC, ALUSrcA)
         alu_B = mux4_32(B, 4, extended_imm, shifted_imm, ALUSrcB)
 
-        alu_result, zero_flag = alu_32bit(alu_A, alu_B, NOT(alu_B), ALUControl)
+        alu_result, zero_flag = alu_32bit(alu_A, alu_B, ALUControl)
         jump_pc = (PC & 0xF0000000) | shifted_jump_addr
         nextPC = mux3_32(PCSource, alu_result, ALUOut, jump_pc)
         branch = AND(PCWriteCond, zero_flag)
