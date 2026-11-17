@@ -1,1 +1,0 @@
-# State registers like PCs, IR, A, B, ALUOut, Register file, $zero, etc
