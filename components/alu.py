@@ -7,11 +7,10 @@ from components.muxes import mux2, mux3
 def alu_1bit(a: int, b: int, binvert: int, cin: int, op: int) -> tuple[int, int]:
     b_in = mux2(b, NOT(b), binvert)
 
-    anding = AND(a, b_in)
     oring = OR(a, b_in)
     adding, cout = full_adder(a, b_in, cin)
 
-    result = mux3(anding, oring, adding, op)
+    result = mux2(oring, adding, op)
     return result, cout
 
 def alu_32bit(a32: int, b32: int, binvert: int, op: int) -> tuple[int, int]:
@@ -28,17 +27,13 @@ def alu_32bit(a32: int, b32: int, binvert: int, op: int) -> tuple[int, int]:
         result |= (bit_res << i)
 
     # 3. 32-input NOR gate - Zero flag
-    or_all_bits = 0
-    for i in range(32):
-        bit = (result >> i) & 1
-        or_all_bits = OR(or_all_bits, bit)
-    zero = NOT(or_all_bits)
+
+    zero = NOR32(result)
 
     return result, zero
 
 #   notes:
 #    Control Signals:
-#      - ADD / LW / SW / PC+4 : binvert=0, op=2
-#      - SUB / SUBI / BNE     : binvert=1, op=2
-#      - ORI                  : binvert=0, op=1
-#      - AND                  : binvert=0, op=0     
+#      - ADD / LW / SW / PC+4 / Branch Target   : binvert=0, op=1
+#      - SUBI / BNE                             : binvert=1, op=1
+#      - ORI                                    : binvert=0, op=0  
