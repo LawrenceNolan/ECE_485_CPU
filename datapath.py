@@ -32,7 +32,7 @@ class MultiCycleDatapath:
         ALUOut = self.ALUOut.read()
 
         # 1. Instruction Fetch / # 4. Memory Write
-        mem_address = mux2(IorD, PC, ALUOut)
+        mem_address = mux2_32(PC, ALUOut, IorD)
         mem_data = self.memory.access(mem_address, MemRead, MemWrite, B)
 
 
@@ -57,13 +57,13 @@ class MultiCycleDatapath:
 
         alu_result, zero_flag = alu_32bit(alu_A, alu_B, ALUControl)
         jump_pc = (PC & 0xF0000000) | shifted_jump_addr
-        nextPC = mux3_32(PCSource, alu_result, ALUOut, jump_pc)
-        branch = AND(PCWriteCond, zero_flag)
+        nextPC = mux3_32(alu_result, ALUOut, jump_pc, PCSource)
+        branch = AND(PCWriteCond, NOT(zero_flag))
 
 
         # 5. Write Back
-        write_reg_addr = mux2(RegDst, rt, rd)
-        write_reg_data = mux2(MemToReg, ALUOut, MDR)
+        write_reg_addr = mux2_32(rt, rd, RegDst)
+        write_reg_data = mux2_32(ALUOut, MDR, MemToReg)
         self.reg_file.write(write_reg_addr, write_reg_data, RegWrite)
 
         # Clock Edge
